@@ -2,8 +2,6 @@
 -- Import each of the daily drive stats files for Q4 2019 ONLY
 --
 
-DROP TABLE IF EXISTS drive_stats;
-
 .mode csv
 .echo on
 .import ./2019/2019-10-01.csv drive_stats
