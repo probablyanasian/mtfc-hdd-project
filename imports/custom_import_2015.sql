@@ -367,4 +367,4 @@
 .import ../backblaze_data/unzipped/data_2015/2015/2015-12-31.csv drive_stats_2015
 .echo off
 .mode list
-DELETE FROM drive_stats WHERE model = 'model';
+DELETE FROM drive_stats_2015 WHERE model = 'model';
