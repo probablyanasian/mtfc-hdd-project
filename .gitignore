@@ -154,5 +154,3 @@ cython_debug/
 # way too large to commit.
 backblaze_data/
 drive_stats.*
-drive_stats.db
-drive_stats.db-journal

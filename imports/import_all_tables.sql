@@ -1,0 +1,12 @@
+.read ../imports/custom_import_2013.sql
+.read ../imports/custom_import_2014.sql
+.read ../imports/custom_import_2015.sql
+.read ../imports/custom_import_2016.sql
+.read ../imports/custom_import_2017.sql
+.read ../imports/custom_import_2018_q1.sql
+.read ../imports/custom_import_2018_q2.sql
+.read ../imports/custom_import_2018_q3.sql
+.read ../imports/custom_import_2018_q4.sql
+.read ../imports/custom_import_2019.sql
+.read ../imports/custom_import_2020.sql
+.read ../imports/custom_import_2021.sql
