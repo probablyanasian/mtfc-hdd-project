@@ -1,12 +1,12 @@
 import os
 import glob
 
-file_time = '2021' # DOES NOT WORK WITH 2018.
-files = glob.glob(f'./backblaze_data/unzipped/**/*{file_time}*.csv', recursive=True)
+file_date = '2021_q4' # DOES NOT WORK WITH ANY YEAR WITH QUARTER DIFFS.
+files = glob.glob(f'./backblaze_data/unzipped/**/data_Q4_2021/*.csv', recursive=True)
 
-with open(f'./imports/custom_import_{file_time}.sql', 'w+') as outfile:
+with open(f'./imports/custom_import_{file_date}.sql', 'w+') as outfile:
 	outfile.write('.mode csv\n.echo on\n')
 	for file in files:
-		outfile.write(f'.import {file} drive_stats_{file_time}\n')
+		outfile.write(f'.import {file} drive_stats_{file_date}\n')
 
-	outfile.write(f'.echo off\n.mode list\nDELETE FROM drive_stats_{file_time} WHERE model = \'model\';')
+	outfile.write(f'.echo off\n.mode list\nDELETE FROM drive_stats_{file_date} WHERE model = \'model\';')
