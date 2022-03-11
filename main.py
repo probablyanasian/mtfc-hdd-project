@@ -51,10 +51,11 @@ data_2019 = pd.concat(data_2021_frames)
 # con_2020.close()
 # con_2019.close()
 
-
 print(data_2021.head(1))
 print(data_2020.head(1))
 print(data_2019.head(1))
+
+# data_2019_q1.loc[(data_2019_q1['model'].str.startswith('ST', na=False)) | (data_2019_q1['model'].str.startswith('Seagate', na=False))].sum()
 
 data_of_interest = 'smart_5_raw'
 
