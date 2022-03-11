@@ -5,7 +5,7 @@ from lifelines import CoxPHFitter, KaplanMeierFitter
 from lifelines.utils import median_survival_times
 
 # Create a SQL connection to our SQLite database
-con_2021 = sqlite3.connect("./db/drive_stats.db")
+con_2021 = sqlite3.connect("./db/drive_stats_2021.db")
 con_2020 = sqlite3.connect("./db/drive_stats_2020.db")
 con_2019 = sqlite3.connect("./db/drive_stats_2019.db")
 # con = sqlite3.connect("./db/drive_stats_2021_q3.db")
@@ -17,7 +17,7 @@ cur_2020 = con_2020.cursor()
 cur_2019 = con_2019.cursor()
 
 # sel = ['capacity_bytes', 'failure', 'smart_1_normalized', 'smart_4_raw', 'smart_5_raw', 'smart_9_raw', 'smart_187_raw', 'smart_188_raw', 'smart_193_raw', 'smart_197_raw', 'smart_198_raw', 'smart_240_raw', 'smart_241_raw', 'smart_242_raw']
-sel = ['failure', 'smart_5_raw', 'smart_9_raw', 'smart_187_raw', 'smart_188_raw', 'smart_197_raw', 'smart_198_raw']#'smart_9_raw']
+sel = ['failure', 'model', 'smart_5_raw', 'smart_9_raw', 'smart_187_raw', 'smart_188_raw', 'smart_197_raw', 'smart_198_raw']#'smart_9_raw']
 # rows = list(cur.execute('PRAGMA table_info(drive_stats_2021_q4);'))
 # sel.extend([row[1] for row in rows[0:5] if row[1] not in ['serial_number', 'model', 'date']])
 # # The result of a "cursor.execute" can be iterated over by row
@@ -54,19 +54,22 @@ print(data_2021.head(1))
 print(data_2020.head(1))
 print(data_2019.head(1))
 
-T_2021 = data_2021['smart_9_raw'] #"smart_9_raw"]
-E_2021 = data_2021["failure"]
+data_2021_filt = data_2021.loc[data_2021['smart_9_raw'] != ''] #"smart_9_raw"]
+T_2021 = data_2021_filt["smart_9_raw"]
+E_2021 = data_2021_filt["failure"]
 plt.hist(T_2021, bins = 240, alpha=0.5, label='2021')
 
-T_2020 = data_2020['smart_9_raw'] #"smart_9_raw"]
-E_2020 = data_2020["failure"]
+data_2020_filt = data_2020.loc[data_2020['smart_9_raw'] != ''] #"smart_9_raw"]
+T_2020 = data_2020_filt["smart_9_raw"]
+E_2020 = data_2020_filt["failure"]
 plt.hist(T_2020, bins = 240, alpha=0.5, label='2020')
 
-T_2019 = data_2019['smart_9_raw'] #"smart_9_raw"]
-E_2019 = data_2019["failure"]
+data_2019_filt = data_2019.loc[data_2019['smart_9_raw'] != ''] #"smart_9_raw"]
+T_2019 = data_2019_filt["smart_9_raw"]
+E_2019 = data_2019_filt["failure"]
 plt.hist(T_2019, bins = 240, alpha=0.5, label='2019')
 
-plt.title("Data Time Distribution of Failures")
+plt.title("Data Time Distribution")
 plt.xlabel('Hours')
 plt.legend(loc='upper right')
 plt.show()
@@ -83,7 +86,7 @@ kmf_2019.fit(durations = T_2019, event_observed = E_2019)
 kmf_2021.plot_survival_function(label='2021')
 kmf_2020.plot_survival_function(label='2020')
 kmf_2019.plot_survival_function(label='2019')
-plt.title('Survival function')
+plt.title('Survival Function')
 plt.xlabel('Hours')
 plt.show()
 
