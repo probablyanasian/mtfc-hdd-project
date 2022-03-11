@@ -56,7 +56,9 @@ print(data_2020.head(1))
 print(data_2019.head(1))
 
 # data_2019_q1.loc[(data_2019_q1['model'].str.startswith('ST', na=False)) | (data_2019_q1['model'].str.startswith('Seagate', na=False))].sum()
-
+# data_2019_q1.loc[(data_2019_q1['model'].str.startswith('WD', na=False))].sum()
+# data_2019_q1.loc[(data_2019_q1['model'].str.startswith('HGST', na=False))].sum()
+# data_2019_q1.loc[(data_2019_q1['model'].str.startswith('TOSHIBA', na=False))].sum()
 data_of_interest = 'smart_5_raw'
 
 data_2021_filt = data_2021.loc[(data_2021[data_of_interest] != '') & (data_2021['smart_9_raw'] != '')]# & (data_2021['failure'] == 1)] #"smart_9_raw"]
